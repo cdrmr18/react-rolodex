@@ -19,9 +19,19 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Rolodaex</h1>
+      <input
+        className="search"
+        type="search"
+        placeholder="search monsters"
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+      />
+      {filteredUsers.map((user) => {
+        return <h1 key={user.id}>{user.name}</h1>;
+      })}
     </div>
   );
-}
+};
 
 export default App;
