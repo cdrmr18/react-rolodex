@@ -6,6 +6,7 @@ import "./App.css";
 const App = () => {
   const [users, setUsers] = useState([]);
   const [searchField, setSearchField] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState(users);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -13,14 +14,17 @@ const App = () => {
       .then((users) => setUsers(users));
   }, []);
 
+  useEffect(() => {
+    const newFilteredUsers = users.filter((user) => {
+      return user.name.toLowerCase().includes(searchField);
+    });
+    setFilteredUsers(newFilteredUsers);
+  }, [users, searchField]);
+
   const onSearchChange = (e) => {
     const search = e.target.value.toLowerCase();
     setSearchField(search);
   };
-
-  const filteredUsers = users.filter((user) => {
-    return user.name.toLowerCase().includes(searchField.toLowerCase());
-  });
 
   return (
     <div className="App">
