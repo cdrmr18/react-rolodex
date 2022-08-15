@@ -1,10 +1,12 @@
 import React from "react";
+import Card from "../card/card";
+import "./card-list.styles.css";
 
 const CardList = ({ filteredUsers }) => {
   return (
-    <div>
+    <div className="card-list">
       {filteredUsers.map((user) => {
-        return <h1 key={user.id}>{user.name}</h1>;
+        return <Card user={user} />;
       })}
     </div>
   );

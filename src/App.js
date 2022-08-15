@@ -25,8 +25,9 @@ const App = () => {
 
   return (
     <div className="App">
+      <h1 className="app-title">Rolodex</h1>
       <SearchBox
-        className="search-box"
+        className="monster-search-box"
         onChangeHandler={onSearchChange}
         placeholder="search monsters"
       />
