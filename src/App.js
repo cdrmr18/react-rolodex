@@ -4,23 +4,22 @@ import SearchBox from "./components/search-box/search-box";
 import "./App.css";
 
 const App = () => {
-  const { users, setUsers } = useState([]);
-  const { value, setValue } = useState("");
+  const [users, setUsers] = useState([]);
+  const [searchField, setSearchField] = useState("");
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => {
-        response.json();
-      })
-      .then((data) => setUsers(data));
-  }, [setUsers]);
+      .then((response) => response.json())
+      .then((users) => setUsers(users));
+  }, []);
 
   const onSearchChange = (e) => {
-    setValue(e.target.value);
+    const search = e.target.value.toLowerCase();
+    setSearchField(search);
   };
 
   const filteredUsers = users.filter((user) => {
-    return user.toLowerCase().includes(value.toLowerCase());
+    return user.name.toLowerCase().includes(searchField.toLowerCase());
   });
 
   return (
